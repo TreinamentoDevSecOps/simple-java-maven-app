@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: CI Java com maven
+name: scan de seguranca veracode
 
 on:
   push:
@@ -37,3 +37,27 @@ jobs:
         distribution: 'adopt'
     - name: Execução de testes com Maven
       run: mvn test
+      
+    - name: Veracode Upload And Scan
+  # You may pin to the exact commit or the version.
+  # uses: veracode/veracode-uploadandscan-action@c5e63c8383debb26a0d48250eab75d94327635ba
+      uses: veracode/veracode-uploadandscan-action@0.2.1
+      with:
+        # appname
+        appname: treinamento
+        # createprofile 
+        createprofile: true
+        # filepath
+        filepath: .
+        # version
+        version: ${{ github.run_id }}
+        # vid
+        vid: ${{ veracodeid }}
+        # vkey
+        vkey: ${{ veracodekey }}
+        # true or flase
+        createsandbox: true
+        # name of the sandbox
+        sandboxname: veracodescantest
+        # wait X minutes for the scan to complete
+        scantimeout: 60
