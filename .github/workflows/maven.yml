@@ -51,10 +51,8 @@ jobs:
         filepath: .
         # version
         version: ${{ github.run_id }}
-        # vid
-        vid: ${{ veracodeid }}
-        # vkey
-        vkey: ${{ veracodekey }}
+        vid: '${{ secrets.VERACODE_API_ID }}'
+        vkey: '${{ secrets.VERACODE_API_KEY }}'
         # true or flase
         createsandbox: true
         # name of the sandbox
